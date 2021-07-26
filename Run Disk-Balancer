@@ -1,0 +1,8 @@
+       hdfs diskbalancer -plan hostname.com
+      hdfs dfs -cat /system/diskbalancer/2021-Jul-24-15-22-47/hostname.com.plan.json
+      hdfs diskbalancer -execute /system/diskbalancer/2021-Jul-24-15-22-47/hostname.com.plan.json
+      hdfs diskbalancer -query hostname.com
+      df -h
+      crontab -l
+      exit
+      hdfs diskbalancer -query hostname.com
