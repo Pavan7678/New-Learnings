@@ -1,0 +1,57 @@
+$:/var/log# less /var/log/messages
+
+logs
+ kernel: mpt3sas_cm0: log_info(0x31080000): originator(PL), code(0x08), sub_code(0x0000)
+
+Jul 14 08:41:26 p-hdp-d-**-** kernel: sd 0:0:3:0: [sdd] tag#0 Sense Key : Medium Error [current] [descriptor]
+
+Jul 14 08:41:26 p-hdp-d-**-** kernel: sd 0:0:3:0: [sdd] tag#0 Add. Sense: Unrecovered read error
+
+Jul 14 08:41:26 p-hdp-d-**-** kernel: sd 0:0:3:0: [sdd] tag#0 CDB: Read(16) 88 00 00 00 00 01 c9 8e db 40 00 00 00 18 00 00
+
+Jul 14 08:41:26 p-hdp-d-**-** kernel: blk_update_request: critical medium error, dev sdd, sector 7676549952
+
+Jul 14 08:41:26 p-hdp-d-**-** kernel: XFS (sdd1): I/O Error Detected. Shutting down filesystem
+
+Jul 14 08:41:26 p-hdp-d-**-** kernel: XFS (sdd1): Please umount the filesystem and rectify the problem(s)
+
+
+
+Check the disk status : 
+
+ df -h
+Filesystem                        Size  Used Avail Use% Mounted on
+devtmpfs                          126G     0  126G   0% /dev
+tmpfs                             126G     0  126G   0% /dev/shm
+tmpfs                             126G  1.7G  124G   2% /run
+tmpfs                             126G     0  126G   0% /sys/fs/cgroup
+/dev/mapper/centos-root            50G  2.6G   48G   6% /
+/dev/sdi2                        1014M  179M  836M  18% /boot
+/dev/sdg1                         3.7T  830G  2.9T  23% /grid/6
+/dev/sdi1                         200M   12M  189M   6% /boot/efi
+/dev/sdd1                         3.7T  851G  2.9T  23% /grid/3
+/dev/sde1                         3.7T  849G  2.9T  23% /grid/4
+/dev/sda1                         3.7T  851G  2.9T  23% /grid/0
+
+
+[root@p-hdp-d-**-** ~]# cd /grid/3/
+[root@p-hdp-d-**-** 3]# ls -lrth
+ls: cannot open directory .: Input/output error​
+[root@p-hdp-d-**-** 3]# pwd
+/grid/3
+
+
+
+Informed to the client about disk failure on shared channel or Zendesk 
+
+Once the Client confirms the disk replacement windows put that particular host into maintenance mode. Stop all running services on the host
+
+Once we get confirmation from the client and the node comes back to online, check the status of the data directory on the host and permission
+
+Make sure all data directory permissions are matched.
+
+If everything is as expected then start all services on the host
+
+Exit host from maintenance node.
+
+Update to the client.
