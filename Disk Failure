@@ -55,3 +55,16 @@ If everything is as expected then start all services on the host
 Exit host from maintenance node.
 
 Update to the client.
+
+
+1.What option do we have if it is a disk failure?
+
+Ans :We have only option to replace the bad disk
+
+2.How do we handle in case of a disk failure and if the data on disk is lost?  And Should the location be removed from any configs??
+
+Ans: We have only option to replace the disk and there is no data loss as the replication factor is set to 3 on HDFS level. No configuration changes required for disk replacement 
+
+ 
+
+Note :If no room to replace the disk, then we will have to remove that disk from the configuration for the specific host
