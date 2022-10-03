@@ -1,0 +1,15 @@
+SYMLINK
+
+
+
+ITSUSRALSP09385
+stop roles on host
+systemctl status cloudera-scm-agent
+systemctl stop cloudera-scm-agent
+cd /var/log/
+cp -rp auditd /data/data02/auditd-bk10012022
+cp -rp auditd /apps/log/auditd
+cd /var/log/
+mv auditd auditd-bk
+ln -s /apps/log/auditd auditd
+systemctl restart cloudera-scm-agent
